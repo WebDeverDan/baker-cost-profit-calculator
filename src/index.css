@@ -116,7 +116,6 @@ input:focus {
   margin: auto;
   justify-content: space-between;
   padding: 20px 0 20px 0;
-  border-bottom: 1px #9c9a9a solid;
 }
 
 .item-name {
@@ -213,4 +212,8 @@ button:hover {
 
 .refresh-title {
   margin-bottom: 2em;
+}
+
+.hidden {
+  display: none;
 }

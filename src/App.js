@@ -11,19 +11,29 @@ const App = () => {
   const [materialCostInputValue, setMaterialCostInputValue] = useState("")
   const [milesInputValue, setMilesInputValue] = useState("")
   const [hoursInputValue, setHoursInputValue] = useState("")
-  const [totalPriceCount, SetTotalPriceCount] = useState("")
+  const [hiddenField, setHiddenFieldClass] = useState("hidden")
   
+
+  // const handleShowData = () => {
+  //   let hiddenField = {
+  //     diaplay: "block" }
+  // };
+
   // add new item to be calculated
   const handleNewCalculationClick = () => {
-    const price = parseInt(priceInputValue);
+    const price = priceInputValue;
     const quantity = parseInt(quantityInputValue);
-    const mileage = 3.25 / milesInputValue;
-    const materialCost = materialCostInputValue;
-    const materialCostPer = materialCost / quantityInputValue;
-    const preProfit = (quantity * price);
-    const profitPerGood = preProfit/quantity;
-    const profit = preProfit - materialCost - mileage;
+    const mileage = ((3.25 / 25) * milesInputValue).toFixed(2);
+    const rawMaterialCost = parseInt(materialCostInputValue)
+    const materialCost = rawMaterialCost.toFixed(2);
+    const materialCostPer = (materialCost / quantity).toFixed(2);
+    const preProfit = (quantity * price).toFixed(2);
+    const profitPerGood = ((preProfit/quantity) - materialCostPer).toFixed(2);
+    const profit = (preProfit - materialCost - mileage).toFixed(2);
+    const hourlyRate = (profit/hoursInputValue).toFixed(2);
+    const preHourlyRate = (preProfit/hoursInputValue).toFixed(2);
     // const customerOwes = 
+    console.log(priceInputValue)
     const newItem = {
       itemName: inputNameValue,
       quantity: quantity,
@@ -33,20 +43,23 @@ const App = () => {
       materialCostPer: materialCostPer,
       preProfit: preProfit,
       profitPerGood: profitPerGood,
-      outOfPocket: materialCost,
       profit: profit,
       mileage: mileage,
-      customerOwes: quantity * price
+      customerOwes: quantity * price,
+      hourlyRate: hourlyRate,
+      preHourlyRate: preHourlyRate
     };
+    let hiddenField = {
+      diaplay: "block" }
     setItem(newItem);
+    setHiddenFieldClass(hiddenField)
   };
 
-
-    // reloads the page and clears it all
-    const reloadWindow = () => {
-    window.location.reload();
-    };
-
+  // reloads the page and clears it all
+  const reloadWindow = () => {
+  window.location.reload();
+  setHiddenFieldClass("hidden")
+  };
 
   return (
     <div className="App">
@@ -56,6 +69,37 @@ const App = () => {
           <h1 className="instructions">
             Follow the Steps Below to Calculate How Much You Need to Charge - Based on what YOU Deserve!
           </h1>
+        </div>
+      <div className={hiddenField}>
+        <div>
+            <br/>
+              <h2>{item.itemName}</h2>
+              <h3>Customer Should Pay: ${item.customerOwes}</h3>
+          </div>
+					<div className="item-list text-dark">
+            <div className="item-container ">
+              <ul class="list-group text-left">
+              <li class="list-group-item">Quantity: {item.quantity} </li>
+                <li class="list-group-item">Base Cost per Good: ${item.price} </li>
+                <li class="list-group-item">Material Cost per Good: ${item.materialCostPer}</li>
+                <li class="list-group-item">Material Cost for Job: ${item.materialCost}</li>
+                {/* <li class="list-group-item">Out of Pocket Expenses: ${item.outOfPocket}</li> */}
+                <li class="list-group-item">Profit per Good: ${item.profitPerGood}</li>
+                {/* <li class="list-group-item">Before Expenses You'll Make: ${item.preHourlyBreakdown}/hr</li> */}
+                {/* <li class="list-group-item">After Expenses You'll Make: ${item.hourlyBreakdown}/hr</li> */}
+                <li class="list-group-item">Mileage Expenses: ${item.mileage}</li>
+                <li class="list-group-item">Before Expenses You'll Make: ${item.preProfit}</li>
+                <li class="list-group-item">After Expenses You'll Make: ${item.profit}</li>
+                <li class="list-group-item">Pre Expenses Hourly Rate: ${item.preHourlyRate}</li>
+                <li class="list-group-item">Post Expenses Hourly Rate: ${item.hourlyRate}</li>
+              </ul>
+            </div>
+          </div>
+          <Button
+            className="button-effects refresh-title"
+            onClick={() => reloadWindow()}
+          >Start Over
+        </Button>
         </div>
         <Card className="main-container">
           <Form className="add-item-form">
@@ -124,36 +168,7 @@ const App = () => {
             onClick={() => handleNewCalculationClick()}
           >Calculate</Button>
           </Form>
-					<div className="">
-            <br/>
-          <div className="text-dark">
-            <h2>{item.itemName} x {item.quantity}</h2>
-            <h3>Customer Should Pay: ${item.customerOwes}</h3>
-
-          </div>
-        </div>
-					<div className="item-list text-dark">
-            <div className="item-container ">
-              <ul class="list-group text-left">
-                <li class="list-group-item">Base Cost per Good: ${item.price} </li>
-                <li class="list-group-item">Material Cost per Good: ${item.materialCostPer}</li>
-                <li class="list-group-item">Material Cost for Job: ${item.materialCost}</li>
-                <li class="list-group-item">Out of Pocket Expenses: ${item.outOfPocket}</li>
-                <li class="list-group-item">Profit per Good: ${item.profitPerGood}</li>
-                {/* <li class="list-group-item">Before Expenses You'll Make: ${item.preHourlyBreakdown}/hr</li> */}
-                {/* <li class="list-group-item">After Expenses You'll Make: ${item.hourlyBreakdown}/hr</li> */}
-                <li class="list-group-item">Mileage: ${item.mileage}</li>
-                <li class="list-group-item">After Expenses You'll Make: ${item.profit}</li>
-
-              </ul>
-            </div>
-        </div>
         </Card>
-        <Button
-            className="button-effects refresh-title"
-            onClick={() => reloadWindow()}
-          >Start Over
-      </Button>
       </Container>
     </div>
   );
