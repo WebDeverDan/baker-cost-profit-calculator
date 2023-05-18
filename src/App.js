@@ -69,8 +69,7 @@ const App = () => {
         </div>
       <div className={hiddenField}>
         <div>
-            <br/>
-              <h2>Type of Food: {item.itemName}</h2>
+              <h1>Type of Food: {item.itemName}</h1>
               <h3>Customer Should Pay: ${item.customerOwes}. They can afford it!</h3>
           </div>
 					<div className="item-list text-dark">
