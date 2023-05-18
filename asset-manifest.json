@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/cost-profit-calculator/static/css/main.b6a5e663.css",
+    "main.js": "/cost-profit-calculator/static/js/main.37686421.js",
+    "index.html": "/cost-profit-calculator/index.html",
+    "main.b6a5e663.css.map": "/cost-profit-calculator/static/css/main.b6a5e663.css.map",
+    "main.37686421.js.map": "/cost-profit-calculator/static/js/main.37686421.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b6a5e663.css",
+    "static/js/main.37686421.js"
+  ]
+}
