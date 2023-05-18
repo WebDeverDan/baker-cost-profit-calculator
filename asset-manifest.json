@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/baker-cost-profit-calculator/static/css/main.0c949b11.css",
-    "main.js": "/baker-cost-profit-calculator/static/js/main.26b2799c.js",
+    "main.js": "/baker-cost-profit-calculator/static/js/main.ae6644bb.js",
     "index.html": "/baker-cost-profit-calculator/index.html",
     "main.0c949b11.css.map": "/baker-cost-profit-calculator/static/css/main.0c949b11.css.map",
-    "main.26b2799c.js.map": "/baker-cost-profit-calculator/static/js/main.26b2799c.js.map"
+    "main.ae6644bb.js.map": "/baker-cost-profit-calculator/static/js/main.ae6644bb.js.map"
   },
   "entrypoints": [
     "static/css/main.0c949b11.css",
-    "static/js/main.26b2799c.js"
+    "static/js/main.ae6644bb.js"
   ]
 }
