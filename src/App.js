@@ -12,13 +12,8 @@ const App = () => {
   const [milesInputValue, setMilesInputValue] = useState("")
   const [hoursInputValue, setHoursInputValue] = useState("")
   const [hiddenField, setHiddenFieldClass] = useState("hidden")
-  
-
-  // const handleShowData = () => {
-  //   let hiddenField = {
-  //     diaplay: "block" }
-  // };
-
+  const [hiddenForm, setHiddenFormClass] = useState("block")
+ 
   // add new item to be calculated
   const handleNewCalculationClick = () => {
     const price = parseInt(priceInputValue).toFixed(2);
@@ -32,7 +27,7 @@ const App = () => {
     const profit = (preProfit - materialCost - mileage).toFixed(2);
     const hourlyRate = (profit/hoursInputValue).toFixed(2);
     const preHourlyRate = (preProfit/hoursInputValue).toFixed(2);
-    // const customerOwes = 
+
     console.log(priceInputValue)
     const newItem = {
       itemName: inputNameValue,
@@ -53,12 +48,13 @@ const App = () => {
       diaplay: "block" }
     setItem(newItem);
     setHiddenFieldClass(hiddenField)
+    setHiddenFormClass("hidden")
   };
 
   // reloads the page and clears it all
   const reloadWindow = () => {
   window.location.reload();
-  setHiddenFieldClass("hidden")
+  setHiddenFieldClass()
   };
 
   return (
@@ -74,8 +70,8 @@ const App = () => {
       <div className={hiddenField}>
         <div>
             <br/>
-              <h2>{item.itemName}</h2>
-              <h3>Customer Should Pay: ${item.customerOwes}</h3>
+              <h2>Type of Food: {item.itemName}</h2>
+              <h3>Customer Should Pay: ${item.customerOwes}. They can afford it!</h3>
           </div>
 					<div className="item-list text-dark">
             <div className="item-container ">
@@ -84,10 +80,7 @@ const App = () => {
                 <li class="list-group-item">Base Cost per Good: ${item.price} </li>
                 <li class="list-group-item">Material Cost per Good: ${item.materialCostPer}</li>
                 <li class="list-group-item">Material Cost for Job: ${item.materialCost}</li>
-                {/* <li class="list-group-item">Out of Pocket Expenses: ${item.outOfPocket}</li> */}
                 <li class="list-group-item">Profit per Good: ${item.profitPerGood}</li>
-                {/* <li class="list-group-item">Before Expenses You'll Make: ${item.preHourlyBreakdown}/hr</li> */}
-                {/* <li class="list-group-item">After Expenses You'll Make: ${item.hourlyBreakdown}/hr</li> */}
                 <li class="list-group-item">Mileage Expenses: ${item.mileage}</li>
                 <li class="list-group-item">Before Expenses You'll Make: ${item.preProfit}</li>
                 <li class="list-group-item">After Expenses You'll Make: ${item.profit}</li>
@@ -102,7 +95,8 @@ const App = () => {
           >Start Over
         </Button>
         </div>
-        <Card className="main-container" style={{background: "lightblue"}}>
+        <div className={hiddenForm}>
+        <Card className="main-container"  style={{background: "lightblue"}}>
           <Form className="add-item-form">
           <Form.Group className="mb-1" controlId="formEnterItem">
               <Form.Label className="text-dark">Name of Baked Good</Form.Label>
@@ -170,6 +164,7 @@ const App = () => {
           >Calculate</Button>
           </Form>
         </Card>
+        </div>
       </Container>
     </div>
   );
