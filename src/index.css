@@ -6,16 +6,16 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  color: white;
+  color: pink;
 }
 
 .App {
-  font-family: sans-serif;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   text-align: center;
 }
 
 .app-background {
-  background-color: #ffffff;
+  background-color: pink;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,7 +24,6 @@ body {
 }
 
 .main-container {
-  background-color: #87e8c3;
   width: 100%;
   height: min-content;
   border-radius: 5px;
@@ -108,7 +107,6 @@ input:focus {
 .item-list {
   display: flex;
   flex-direction: column;
-  
 }
 
 .item-container {
@@ -216,4 +214,9 @@ button:hover {
 
 .hidden {
   display: none;
+}
+
+.calculate_button {
+  color: pink; 
+  font: black; 
 }

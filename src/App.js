@@ -69,6 +69,7 @@ const App = () => {
           <h1 className="instructions">
             Follow the Steps Below to Calculate How Much You Need to Charge - Based on what YOU Deserve!
           </h1>
+          <br/>
         </div>
       <div className={hiddenField}>
         <div>
@@ -101,7 +102,7 @@ const App = () => {
           >Start Over
         </Button>
         </div>
-        <Card className="main-container">
+        <Card className="main-container" style={{background: "lightblue"}}>
           <Form className="add-item-form">
           <Form.Group className="mb-1" controlId="formEnterItem">
               <Form.Label className="text-dark">Name of Baked Good</Form.Label>
@@ -164,7 +165,7 @@ const App = () => {
               />
             </Form.Group>
             <Button
-            className="button-effects"
+            className="button-effects calculate_button"
             onClick={() => handleNewCalculationClick()}
           >Calculate</Button>
           </Form>
