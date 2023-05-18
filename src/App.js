@@ -21,7 +21,7 @@ const App = () => {
 
   // add new item to be calculated
   const handleNewCalculationClick = () => {
-    const price = priceInputValue;
+    const price = parseInt(priceInputValue).toFixed(2);
     const quantity = parseInt(quantityInputValue);
     const mileage = ((3.25 / 25) * milesInputValue).toFixed(2);
     const rawMaterialCost = parseInt(materialCostInputValue)
