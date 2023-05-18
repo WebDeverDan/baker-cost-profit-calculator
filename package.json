@@ -1,7 +1,7 @@
 {
   "name": "cost-profit-calculator",
   "version": "0.1.0",
-  "homepage": "https://webdeverdan.github.io/cost-profit-calculator",
+  "homepage": "https://webdeverdan.github.io/baker-cost-profit-calculator",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
