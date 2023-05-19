@@ -44,32 +44,10 @@ body {
   margin-top: 2em;
 }
 
-.budget-message {
-  font-size: 20px;
-  color: #000000;
-  margin-top: 1em;
-}
 
 .instructions {
   font-size: 20px;
   color: #000000;
-}
-
-.add-budget-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 20px;
-  padding: 5px;
-}
-
-.add-budget-input {
-  text-align: center;
-  box-shadow: 10px 10px 26px 0px rgba(0, 0, 0, 0.35);
-}
-
-.add-item-box svg {
-  margin: 5px;
 }
 
 .add-item-input {
@@ -85,16 +63,6 @@ body {
 
 .form-text {
   font: #000000;
-}
-.add-price-input {
-  box-sizing: border-box;
-  border: none;
-  border-width: .1em;
-  background: #ffffff;
-  color: black;
-  width: 100%;
-  padding-left: .3em;
-  box-shadow: 10px 10px 26px 0px rgba(0, 0, 0, 0.2);
 }
 
 input::placeholder {
@@ -131,65 +99,11 @@ input:focus {
   justify-content: space-between;
 }
 
-.remove-button {
-  color: white;
-  background-color: red;
-}
-
-.total {
-  float: right;
-  padding: 10px;
-  font-size: 20px;
-}
-
-.over-budget {
-  font-size: 20px;
-  color: red;
-}
-
-.under-budget {
-  font-size: 20px;
-  color: blue;
-}
-
-.regular-price {
-  font-size: 20px;
-  color: #000000;
-}
-
-.totals {
-  margin: auto;
-  display: flex;
-  margin-bottom: 1em;
-  font: #000000;
-  border: solid;
-  border-color: #000000;
-  border-left: none;
-  border-right: none;
-  margin-top: 1em;
-}
-
-
-.quantity {
-  display: flex;
-  align-items: center;
-  /* border: 1px solid #000000; */
-  /* background: white;
-  border-radius: 50px; */
-  font-size: 15px;
-  color: #ec645b;
-  min-width: 70px;
-  justify-content: space-between;
-}
-
-.quantity-integer{
-  color: #000000
-}
-
 button {
   background: transparent;
   border: none;
   margin: 3px;
+  color: pink;
 }
 
 button:focus {
@@ -202,14 +116,15 @@ button:hover {
 
 .button-effects{
   box-shadow: 10px 10px 26px 0px rgba(0, 0, 0, 0.3);
-}
-
-.completed {
-  text-decoration: line-through;
+  color: pink;
 }
 
 .refresh-title {
   margin-bottom: 2em;
+  background-color: lightblue !important;
+  color: black !important;
+  border: solid;
+  border-color: black !important;
 }
 
 .hidden {
@@ -217,6 +132,9 @@ button:hover {
 }
 
 .calculate_button {
-  color: pink; 
-  font: black; 
+  background-color: white !important;
+  color: black !important;
+  border: solid;
+  border-color: black !important;
 }
+
