@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./index.css";
-import {Container , Card, Form, Button} from 'react-bootstrap'  
+import {Container , Card, Form, Button, ButtonGroup, Dropdown} from 'react-bootstrap'  
 
 
 const App = () => {
@@ -13,6 +13,7 @@ const App = () => {
   const [hoursInputValue, setHoursInputValue] = useState("")
   const [hiddenField, setHiddenFieldClass] = useState("hidden")
   const [hiddenForm, setHiddenFormClass] = useState("block")
+
  
   // add new item to be calculated
   const handleNewCalculationClick = () => {
@@ -27,10 +28,10 @@ const App = () => {
     const profit = (preProfit - materialCost - mileage).toFixed(2);
     const hourlyRate = (profit/hoursInputValue).toFixed(2);
     const preHourlyRate = (preProfit/hoursInputValue).toFixed(2);
-
-    console.log(priceInputValue)
+    const trimmedTitle = inputNameValue.trim();
+    const bakedGoodName = trimmedTitle.toLowerCase();
     const newItem = {
-      itemName: inputNameValue,
+      itemName: bakedGoodName,
       quantity: quantity,
       price: price,
       isSelected: false,
@@ -106,6 +107,7 @@ const App = () => {
                 onChange={(e) => setNameInputValue(e.target.value)}
                 className="add-item-input"
               />
+              
             </Form.Group>
             <Form.Group className="mb-1" controlId="formEnterItem">
               <Form.Label className="text-dark">Quantity of Baked Goods</Form.Label>
