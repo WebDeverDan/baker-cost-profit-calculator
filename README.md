@@ -20,6 +20,8 @@
   * To view the source files, please refer to the Github repository for this application, also found below. 
 
   * Github repository for source files: https://github.com/WebDeverDan/baker-cost-profit-calculator
+
+  * Deployed Github pages app: https://webdeverdan.github.io/baker-cost-profit-calculator/
  
   * To start the app, download code, run npm install, npm start and let 'er rip!
 
