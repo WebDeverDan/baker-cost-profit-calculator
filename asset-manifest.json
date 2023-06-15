@@ -1,13 +1,15 @@
 {
-  "files": {
-    "main.css": "/baker-cost-profit-calculator/static/css/main.be6f334d.css",
-    "main.js": "/baker-cost-profit-calculator/static/js/main.6b9c8c11.js",
-    "index.html": "/baker-cost-profit-calculator/index.html",
-    "main.be6f334d.css.map": "/baker-cost-profit-calculator/static/css/main.be6f334d.css.map",
-    "main.6b9c8c11.js.map": "/baker-cost-profit-calculator/static/js/main.6b9c8c11.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.be6f334d.css",
-    "static/js/main.6b9c8c11.js"
-  ]
+  "main.css": "/baker-cost-profit-calculator/static/css/main.b6a67d23.chunk.css",
+  "main.js": "/baker-cost-profit-calculator/static/js/main.116662bb.chunk.js",
+  "main.js.map": "/baker-cost-profit-calculator/static/js/main.116662bb.chunk.js.map",
+  "static/css/1.c53030e0.chunk.css": "/baker-cost-profit-calculator/static/css/1.c53030e0.chunk.css",
+  "static/js/1.6a1cd76a.chunk.js": "/baker-cost-profit-calculator/static/js/1.6a1cd76a.chunk.js",
+  "static/js/1.6a1cd76a.chunk.js.map": "/baker-cost-profit-calculator/static/js/1.6a1cd76a.chunk.js.map",
+  "runtime~main.js": "/baker-cost-profit-calculator/static/js/runtime~main.8a7c9dcb.js",
+  "runtime~main.js.map": "/baker-cost-profit-calculator/static/js/runtime~main.8a7c9dcb.js.map",
+  "static/css/1.c53030e0.chunk.css.map": "/baker-cost-profit-calculator/static/css/1.c53030e0.chunk.css.map",
+  "static/css/main.b6a67d23.chunk.css.map": "/baker-cost-profit-calculator/static/css/main.b6a67d23.chunk.css.map",
+  "index.html": "/baker-cost-profit-calculator/index.html",
+  "precache-manifest.569e1a8924a96b00f3ecf371790eebf9.js": "/baker-cost-profit-calculator/precache-manifest.569e1a8924a96b00f3ecf371790eebf9.js",
+  "service-worker.js": "/baker-cost-profit-calculator/service-worker.js"
 }
