@@ -211,7 +211,7 @@ const App = () => {
             <br/>
             <h5>{resolvedName}</h5>
             <Form.Group className="mb-1" controlId="formEnterItem">
-              {/* <Form.Label className="text-dark">Quantity of Baked Good</Form.Label> */}
+              <Form.Label className="text-dark">Quantity of Baked Good</Form.Label>
               <Form.Control
                 type="input"
                 placeholder="Enter the quantity"
