@@ -1,23 +1,94 @@
 import React, { useState } from "react";
 import "./index.css";
-import {Container , Card, Form, Button, ButtonGroup, Dropdown} from 'react-bootstrap'  
+import {Container , Card, Form, Button, Dropdown, DropdownButton} from 'react-bootstrap'  
 
 
 const App = () => {
   const [item, setItem] = useState({});
-  const [inputNameValue, setNameInputValue] = useState("") 
+  const [value, setValue] = useState("");
+  const [discountValue, setDiscount] = useState("")
+  const [resolvedName, setBakedGoodNameValue] = useState("") 
   const [quantityInputValue, setQuantityValue] = useState("")
-  const [priceInputValue, setPriceInputValue] = useState("")
+  const [resolvedPrice, setResolvedPrice] = useState("")
   const [materialCostInputValue, setMaterialCostInputValue] = useState("")
   const [milesInputValue, setMilesInputValue] = useState("")
   const [hoursInputValue, setHoursInputValue] = useState("")
   const [hiddenField, setHiddenFieldClass] = useState("hidden")
   const [hiddenForm, setHiddenFormClass] = useState("block")
 
- 
-  // add new item to be calculated
+  // sets value of the selected baked good from the dropdown
+  const handleSelectGood=(selectedGood)=>{
+    setValue(selectedGood);
+    console.log(selectedGood)
+    if (selectedGood == 'wedding-cake1') {
+      let price = 120
+      let goodName = "Single-Tiered Wedding Cake"
+      setResolvedPrice(price)
+      setBakedGoodNameValue(goodName)
+    } else if (selectedGood == 'wedding-cake2') {
+      let price = 220
+      let goodName = "Double-Tiered Wedding Cake"
+      setResolvedPrice(price) 
+      setBakedGoodNameValue(goodName)
+    } else if (selectedGood == 'wedding-cake3') {
+      let price = 320
+      let goodName = "Triple-Tiered Wedding Cake"
+      setResolvedPrice(price)
+      setBakedGoodNameValue(goodName)
+    } else if (selectedGood == 'bday-cake') {
+      let price = 120
+      let goodName = "Birthday Cake"
+      setResolvedPrice(price)
+      setBakedGoodNameValue(goodName)
+    } else if (selectedGood == 'cookie') {
+      let price = 2.00
+      let goodName = "Cookie(s)"
+      setResolvedPrice(price)
+      setBakedGoodNameValue(goodName)
+    } else if (selectedGood == 'cupcake') {
+      let price = 3.50
+      let goodName = "Cupcake(s)"
+      setResolvedPrice(price)
+      setBakedGoodNameValue(goodName)
+    } else if (selectedGood == 'pie') {
+      let price = 28
+      let goodName = "Pie(s)"
+      setResolvedPrice(price)
+      setBakedGoodNameValue(goodName)
+    } else if (selectedGood == 'small-pastry') {
+      let price = 3.50
+      let goodName = "Small Pastry(ies)"
+      setResolvedPrice(price)
+      setBakedGoodNameValue(goodName)
+    } else if (selectedGood == 'large-pastry') {
+      let price = 5.00
+      let goodName = "Large Pastry(ies)"
+      setResolvedPrice(price)
+      setBakedGoodNameValue(goodName)
+    }
+  };
+
+  // sets state for discount dropdown
+  const handleSelectDiscount=(selectedDiscount)=>{
+    setDiscount(selectedDiscount)
+  };
+
+  // reassigns the discount from selection to integer amount
+  function adjustDiscount() {
+    let discount = discountValue
+    if (discount === 'yes') {
+      discount = 0.15
+      setDiscount(discount)
+    } else {
+      setDiscount('')
+    }
+    return discount
+  };
+
+  // add new item to be calculated - need to refactor to clean up crazy variable list
   const handleNewCalculationClick = () => {
-    const price = parseInt(priceInputValue).toFixed(2);
+    const discount = adjustDiscount()
+    const price = parseInt(resolvedPrice).toFixed(2);
     const quantity = parseInt(quantityInputValue);
     const mileage = ((3.25 / 25) * milesInputValue).toFixed(2);
     const rawMaterialCost = parseInt(materialCostInputValue)
@@ -28,8 +99,15 @@ const App = () => {
     const profit = (preProfit - materialCost - mileage).toFixed(2);
     const hourlyRate = (profit/hoursInputValue).toFixed(2);
     const preHourlyRate = (preProfit/hoursInputValue).toFixed(2);
-    const trimmedTitle = inputNameValue.trim();
+    const trimmedTitle = resolvedName.trim();
     const bakedGoodName = trimmedTitle.toLowerCase();
+    const quantityPrice = quantity * price
+    const transformedQuantityPrice = parseInt(quantityPrice)
+    const transformedMileage = parseInt(mileage)
+    const totalSum = (transformedQuantityPrice + transformedMileage)
+    const discountDollar = (totalSum * discount)
+    const transformedTotalSumWithDicount = (totalSum - discountDollar).toFixed(2)
+    // new item 
     const newItem = {
       itemName: bakedGoodName,
       quantity: quantity,
@@ -41,10 +119,13 @@ const App = () => {
       profitPerGood: profitPerGood,
       profit: profit,
       mileage: mileage,
-      customerOwes: quantity * price,
+      customerOwes: Math.ceil(totalSum),
       hourlyRate: hourlyRate,
-      preHourlyRate: preHourlyRate
+      preHourlyRate: preHourlyRate,
+      discount: transformedTotalSumWithDicount
     };
+
+    // sets the css for hiding the form after calculation
     let hiddenField = {
       diaplay: "block" }
     setItem(newItem);
@@ -71,12 +152,12 @@ const App = () => {
       <div className={hiddenField}>
         <div>
             <h1>Type of Food: {item.itemName}</h1>
-            <h3>Customer Should Pay: ${item.customerOwes}. They can afford it!</h3>
+            <h3>Customer Should Pay (pre discount): ${item.customerOwes}</h3>
           </div>
 					<div className="item-list text-dark">
             <div className="item-container ">
               <ul class="list-group text-left">
-              <li class="list-group-item">Quantity: {item.quantity} </li>
+                <li class="list-group-item">Quantity: {item.quantity} </li>
                 <li class="list-group-item">Base Cost per Good: ${item.price} </li>
                 <li class="list-group-item">Material Cost per Good: ${item.materialCostPer}</li>
                 <li class="list-group-item">Material Cost for Job: ${item.materialCost}</li>
@@ -86,6 +167,7 @@ const App = () => {
                 <li class="list-group-item">After Expenses You'll Make: ${item.profit}</li>
                 <li class="list-group-item">Pre Expenses Hourly Rate: ${item.preHourlyRate}</li>
                 <li class="list-group-item">Post Expenses Hourly Rate: ${item.hourlyRate}</li>
+                <li class="list-group-item">Discounted Price ${item.discount}</li>
               </ul>
             </div>
           </div>
@@ -98,35 +180,27 @@ const App = () => {
         <div className={hiddenForm}>
         <Card className="main-container"  style={{background: "lightblue"}}>
           <Form className="add-item-form">
-          <Form.Group className="mb-1" controlId="formEnterItem">
-              <Form.Label className="text-dark">Name of Baked Good</Form.Label>
-              <Form.Control
-                type="input"
-                placeholder="Enter name of baked good"
-                value={inputNameValue}
-                onChange={(e) => setNameInputValue(e.target.value)}
-                className="add-item-input"
-              />
-              
-            </Form.Group>
+            <DropdownButton alignRight title="Select Type of Baked Good" id="dropdown-menu-align-right" onSelect={handleSelectGood}>
+              <Dropdown.Item eventKey="wedding-cake1">Wedding Cake - 1 Tier</Dropdown.Item>
+              <Dropdown.Item eventKey="wedding-cake2">Wedding Cake - 2 Tier</Dropdown.Item>
+              <Dropdown.Item eventKey="wedding-cake3">Wedding Cake - 3 Tier</Dropdown.Item>
+              <Dropdown.Item eventKey="bday-cake">Brithday Cake</Dropdown.Item>
+              <Dropdown.Item eventKey="cookie">Cookie</Dropdown.Item>
+              <Dropdown.Item eventKey="pie">Pie</Dropdown.Item>
+              <Dropdown.Item eventKey="cupcake">Cupcake</Dropdown.Item>
+              <Dropdown.Item eventKey="small-pastry">Small Pastry</Dropdown.Item>
+              <Dropdown.Item eventKey="large-pastry">Large Pastry</Dropdown.Item>
+            </DropdownButton>
+            <br/>
+            <h5>{resolvedName}</h5>
             <Form.Group className="mb-1" controlId="formEnterItem">
-              <Form.Label className="text-dark">Quantity of Baked Goods</Form.Label>
+              {/* <Form.Label className="text-dark">Quantity of Baked Good</Form.Label> */}
               <Form.Control
                 type="input"
-                placeholder="Enter quantity of goods"
+                placeholder="Type the quantity of baked good"
                 value={quantityInputValue}
                 onChange={(e) => setQuantityValue(e.target.value)}
                 className="add-item-input"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formEnterCost">
-              <Form.Label className="text-dark">Cost per Baked Good</Form.Label>
-              <Form.Control
-                type="input"
-                placeholder="Enter cost per good"
-                value={priceInputValue}
-                onChange={(e) => setPriceInputValue(e.target.value)}
-                className="add-price-input"
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formEnterHours">
@@ -159,6 +233,12 @@ const App = () => {
                 className="add-price-input"
               />
             </Form.Group>
+            <DropdownButton alignRight title="Apply Discount?" id="dropdown-menu-align-right" onSelect={handleSelectDiscount}>
+              <Dropdown.Item eventKey="yes">yes</Dropdown.Item>
+              <Dropdown.Item eventKey="no">no</Dropdown.Item>
+            </DropdownButton>
+            <h5>Discount: {discountValue}</h5>
+            <br/>
             <Button
             className="button-effects calculate_button"
             onClick={() => handleNewCalculationClick()}
