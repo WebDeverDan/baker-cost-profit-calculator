@@ -85,16 +85,16 @@ const App = () => {
     return discount
   };
 
-  // this handles the  
-  function handleControlDiscountText(transformedTotalSumWithDicount) {
-    let printedDiscount = transformedTotalSumWithDicount
-    if (Number.isInteger(printedDiscount) ) {
-      printedDiscount =  `$ ${transformedTotalSumWithDicount}`
+  function handleControlDiscountText(transformedTotalSumWithDiscount) {
+    let printedDiscount = transformedTotalSumWithDiscount
+    let transformedDiscount = parseInt(printedDiscount)
+    if (Number.isInteger(printedDiscount)) {
+      transformedDiscount = `$${transformedTotalSumWithDiscount}`
     } else {
-      printedDiscount = "Not Discounted"
+      transformedDiscount = "Not Discounted"
     }
-    return printedDiscount
-  }
+    return transformedDiscount
+  };
 
   // add new item to be calculated - need to refactor to clean up crazy variable list
   const handleNewCalculationClick = () => {
@@ -118,8 +118,8 @@ const App = () => {
     const totalSum = (transformedQuantityPrice + transformedMileage)
     // these lines handle if there is a discount or not and how that gets printed in the discount: field of the calculation
     const discountDollar = (totalSum * discount)
-    const transformedTotalSumWithDicount = (totalSum - discountDollar).toFixed(2)
-    const discountedPrice = handleControlDiscountText(transformedTotalSumWithDicount)
+    const transformedTotalSumWithDiscount = (totalSum - discountDollar)
+    const discountedPrice = handleControlDiscountText(transformedTotalSumWithDiscount)
     // new item 
     const newItem = {
       itemName: bakedGoodName,
