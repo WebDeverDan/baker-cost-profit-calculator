@@ -85,6 +85,17 @@ const App = () => {
     return discount
   };
 
+  // this handles the  
+  function handleControlDiscountText(transformedTotalSumWithDicount) {
+    let printedDiscount = transformedTotalSumWithDicount
+    if (Number.isInteger(printedDiscount) ) {
+      printedDiscount =  `$ ${transformedTotalSumWithDicount}`
+    } else {
+      printedDiscount = "Not Discounted"
+    }
+    return printedDiscount
+  }
+
   // add new item to be calculated - need to refactor to clean up crazy variable list
   const handleNewCalculationClick = () => {
     const discount = adjustDiscount()
@@ -105,8 +116,10 @@ const App = () => {
     const transformedQuantityPrice = parseInt(quantityPrice)
     const transformedMileage = parseInt(mileage)
     const totalSum = (transformedQuantityPrice + transformedMileage)
+    // these lines handle if there is a discount or not and how that gets printed in the discount: field of the calculation
     const discountDollar = (totalSum * discount)
     const transformedTotalSumWithDicount = (totalSum - discountDollar).toFixed(2)
+    const discountedPrice = handleControlDiscountText(transformedTotalSumWithDicount)
     // new item 
     const newItem = {
       itemName: bakedGoodName,
@@ -119,10 +132,10 @@ const App = () => {
       profitPerGood: profitPerGood,
       profit: profit,
       mileage: mileage,
-      customerOwes: Math.ceil(totalSum),
+      customerOwes: totalSum,
       hourlyRate: hourlyRate,
       preHourlyRate: preHourlyRate,
-      discount: transformedTotalSumWithDicount
+      discount: discountedPrice
     };
 
     // sets the css for hiding the form after calculation
@@ -142,17 +155,21 @@ const App = () => {
   return (
     <div className="App">
       <Container fluid className="app-background">
-        <h1 className="app-title">Baked Goods Price and Profit Calculator</h1>
+        <div classname="banner">
+          <h1 className="app-title">Baked Goods Price Calculator</h1>
+        </div>
         <div className="add-budget-box">
-          <h1 className="instructions">
-            Follow the Steps Below to Calculate How Much You Need to Charge - Based on what YOU Deserve!
-          </h1>
+          <div className={hiddenForm}>
+          <h4 className="instructions">
+            Follow the Steps Below to Calculate How Much You Need to Charge
+          </h4>
+          </div>
           <br/>
         </div>
-      <div className={hiddenField}>
+        <div className={hiddenField}>
         <div>
-            <h1>Type of Food: {item.itemName}</h1>
-            <h3>Customer Should Pay (pre discount): ${item.customerOwes}</h3>
+            <h3>{item.itemName}</h3>
+            <h3>Price (pre discount): ${item.customerOwes}</h3>
           </div>
 					<div className="item-list text-dark">
             <div className="item-container ">
@@ -167,7 +184,7 @@ const App = () => {
                 <li class="list-group-item">After Expenses You'll Make: ${item.profit}</li>
                 <li class="list-group-item">Pre Expenses Hourly Rate: ${item.preHourlyRate}</li>
                 <li class="list-group-item">Post Expenses Hourly Rate: ${item.hourlyRate}</li>
-                <li class="list-group-item">Discounted Price ${item.discount}</li>
+                <li class="list-group-item">Discounted Price: {item.discount}</li>
               </ul>
             </div>
           </div>
@@ -197,7 +214,7 @@ const App = () => {
               {/* <Form.Label className="text-dark">Quantity of Baked Good</Form.Label> */}
               <Form.Control
                 type="input"
-                placeholder="Type the quantity of baked good"
+                placeholder="Enter the quantity"
                 value={quantityInputValue}
                 onChange={(e) => setQuantityValue(e.target.value)}
                 className="add-item-input"
@@ -217,7 +234,7 @@ const App = () => {
               <Form.Label className="text-dark">How Many Miles are You Driving to and From Delivery?</Form.Label>
               <Form.Control
                 type="input"
-                placeholder="Enter Miles Driven ($1 per mile)"
+                placeholder="Enter Miles Driven"
                 value={milesInputValue}
                 onChange={(e) => setMilesInputValue(e.target.value)}
                 className="add-price-input"
