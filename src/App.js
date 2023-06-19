@@ -161,7 +161,7 @@ const App = () => {
         <div className="add-budget-box">
           <div className={hiddenForm}>
             <h4 className="instructions">
-              Follow the Steps Below to Calculate How Much You Need to Charge
+              Enter Data Below to Calculate the Price You Should Charge
             </h4>
           </div>
           <br/>
