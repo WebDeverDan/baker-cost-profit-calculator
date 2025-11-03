@@ -3,7 +3,7 @@
   
   ## Description
   
-  * A mobile-first mini-application to use in order to calculate how much a user should charge for baked goods services. This is hardcoded with real-world market rate prices for the goods, and incorporates quantity, mileage, hours spent, material cost, and also a 15% discount function. 
+  * A baker in the family needed a tool like this to use so I've made a mobile-first mini-application to use in order to calculate how much a she should charge for baked goods services. This is hardcoded with real-world market rate prices for the goods, and incorporates quantity, mileage, hours spent, material cost, and also a variable discount function. 
     
   ## Table of Contents
   
