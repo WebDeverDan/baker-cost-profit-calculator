@@ -87,6 +87,17 @@ const App = () => {
     return discount;
   }
 
+  function handleControlDiscountText(transformedTotalSumWithDiscount) {
+    let printedDiscount = transformedTotalSumWithDiscount
+    let transformedDiscount = parseInt(printedDiscount)
+    if (Number.isInteger(printedDiscount)) {
+      transformedDiscount = `$${transformedTotalSumWithDiscount}`
+    } else {
+      transformedDiscount = "Not Discounted"
+    }
+    return transformedDiscount
+  };
+
   // add new item to be calculated - need to refactor to clean up crazy variable list
   const handleNewCalculationClick = () => {
     // Validate dropdown selections
@@ -137,7 +148,7 @@ const App = () => {
       profitPerGood: profitPerGood,
       profit: profit,
       mileage: mileage,
-      customerOwes: Math.ceil(totalSum),
+      customerOwes: totalSum,
       hourlyRate: hourlyRate,
       preHourlyRate: preHourlyRate,
       discount: transformedTotalSumWithDicount,
