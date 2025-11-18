@@ -160,3 +160,17 @@ button:hover {
   border-color: black !important;
 }
 
+@media (max-width: 768px) {
+  .app-header {
+    font-size: 75%;
+  }
+
+  .app-header .app-title {
+    font-size: 30px;
+  }
+
+  .app-header .instructions {
+    font-size: 20px;
+  }
+}
+

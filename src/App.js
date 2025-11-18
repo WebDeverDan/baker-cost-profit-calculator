@@ -178,7 +178,7 @@ const App = () => {
             <h1 className="instructions">
               {hiddenField === "hidden"
                 ? "Having a hard time figuring out what to charge? Follow the steps below to calculate your cost and profit!"
-                : "Based on your inputs, below is how much you should charge for the order."}
+                : "Below is how much you should charge for the order!"}
             </h1>
             <br />
           </div>
